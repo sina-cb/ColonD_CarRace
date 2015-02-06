@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/Testbed.dir/Framework/Main.o CMakeFiles/Testbed.dir/Framework/Render.o CMakeFiles/Testbed.dir/Framework/Test.o CMakeFiles/Testbed.dir/Tests/TestEntries.o  -o Testbed -rdynamic ../Box2D/libBox2D.a ../freeglut/libfreeglut_static.a ../glui/libglui.a -lGLU -lGL -lSM -lICE -lX11 -lXext 

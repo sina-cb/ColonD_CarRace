@@ -1,0 +1,5 @@
+/home/sina/workspace/ColonD_CarRace/Build/Box2D/CMakeFiles/Box2D.dir
+/home/sina/workspace/ColonD_CarRace/Build/CarRace/CMakeFiles/CarRace.dir
+/home/sina/workspace/ColonD_CarRace/Build/Testbed/CMakeFiles/Testbed.dir
+/home/sina/workspace/ColonD_CarRace/Build/freeglut/CMakeFiles/freeglut_static.dir
+/home/sina/workspace/ColonD_CarRace/Build/glui/CMakeFiles/glui.dir
