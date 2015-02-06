@@ -18,6 +18,8 @@ INCLUDEPATH += ../Box2D_v2.1.2/Box2D
 LIBS += -L ../Box2D_v2.1.2/Box2D/Build/Box2D
 LIBS += -lBox2D
 
+LIBS += -lGL -lglut
 
+SOURCES += main.cpp \
 
-SOURCES += main.cpp
+HEADERS += \
