@@ -5,7 +5,7 @@
       <Option title="Box2D" />
       <Option makefile_is_custom="1" />
       <Option compiler="gcc" />
-      <Option virtualFolders="CMake Files\;CMake Files\Box2D\;CMake Files\freeglut\;CMake Files\glui\;CMake Files\CarRace\;" />
+      <Option virtualFolders="CMake Files\;CMake Files\Box2D\;CMake Files\freeglut\;CMake Files\glui\;CMake Files\CarRace\;CMake Files\rapidjson\;" />
       <Build>
       <Target title="all">
          <Option working_dir="/home/sina/workspace/ColonD_CarRace/Build" />
@@ -194,6 +194,7 @@
             <Add option="-DFREEGLUT_STATIC" />
             <Add option="-D_CRT_SECURE_NO_WARNINGS" />
             <Add directory="/home/sina/workspace/ColonD_CarRace" />
+            <Add directory="/home/sina/workspace/ColonD_CarRace/CarRace/../rapidjson" />
             <Add directory="/usr/include" />
          </Compiler>
          <MakeCommands>
@@ -214,6 +215,7 @@
             <Add option="-DFREEGLUT_STATIC" />
             <Add option="-D_CRT_SECURE_NO_WARNINGS" />
             <Add directory="/home/sina/workspace/ColonD_CarRace" />
+            <Add directory="/home/sina/workspace/ColonD_CarRace/CarRace/../rapidjson" />
             <Add directory="/usr/include" />
          </Compiler>
          <MakeCommands>
@@ -221,6 +223,40 @@
             <CompileFile command="/usr/bin/make -f &quot;/home/sina/workspace/ColonD_CarRace/Build/CarRace/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/sina/workspace/ColonD_CarRace/Build/CarRace/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/sina/workspace/ColonD_CarRace/Build/CarRace/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rapidjson">
+         <Option output="/home/sina/workspace/ColonD_CarRace/Build/rapidjson/librapidjson.a" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/sina/workspace/ColonD_CarRace/Build/rapidjson" />
+         <Option object_output="./" />
+         <Option type="2" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DFREEGLUT_STATIC" />
+            <Add option="-D_CRT_SECURE_NO_WARNINGS" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/sina/workspace/ColonD_CarRace/Build/rapidjson/Makefile&quot;  VERBOSE=1 rapidjson" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/sina/workspace/ColonD_CarRace/Build/rapidjson/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/sina/workspace/ColonD_CarRace/Build/rapidjson/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/sina/workspace/ColonD_CarRace/Build/rapidjson/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rapidjson/fast">
+         <Option output="/home/sina/workspace/ColonD_CarRace/Build/rapidjson/librapidjson.a" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/sina/workspace/ColonD_CarRace/Build/rapidjson" />
+         <Option object_output="./" />
+         <Option type="2" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DFREEGLUT_STATIC" />
+            <Add option="-D_CRT_SECURE_NO_WARNINGS" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/sina/workspace/ColonD_CarRace/Build/rapidjson/Makefile&quot;  VERBOSE=1 rapidjson/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/sina/workspace/ColonD_CarRace/Build/rapidjson/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/sina/workspace/ColonD_CarRace/Build/rapidjson/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/sina/workspace/ColonD_CarRace/Build/rapidjson/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
       </Build>
@@ -302,7 +338,7 @@
       </Unit>
       <Unit filename="/home/sina/workspace/ColonD_CarRace/CarRace/Game/Test.cpp">
       </Unit>
-      <Unit filename="/home/sina/workspace/ColonD_CarRace/CarRace/Learning/empty.cpp">
+      <Unit filename="/home/sina/workspace/ColonD_CarRace/CarRace/Learning/SimpleDriver.cpp">
       </Unit>
       <Unit filename="/home/sina/workspace/ColonD_CarRace/CarRace/System/main.cpp">
       </Unit>
@@ -418,6 +454,8 @@
       </Unit>
       <Unit filename="/home/sina/workspace/ColonD_CarRace/glui/quaternion.cpp">
       </Unit>
+      <Unit filename="/home/sina/workspace/ColonD_CarRace/rapidjson/empty.cpp">
+      </Unit>
       <Unit filename="/home/sina/workspace/ColonD_CarRace/Box2D/Box2D.h">
       </Unit>
       <Unit filename="/home/sina/workspace/ColonD_CarRace/Box2D/Collision/Shapes/b2CircleShape.h">
@@ -498,6 +536,10 @@
       </Unit>
       <Unit filename="/home/sina/workspace/ColonD_CarRace/CarRace/Game/Test.h">
       </Unit>
+      <Unit filename="/home/sina/workspace/ColonD_CarRace/CarRace/Learning/Driver.h">
+      </Unit>
+      <Unit filename="/home/sina/workspace/ColonD_CarRace/CarRace/Learning/SimpleDriver.h">
+      </Unit>
       <Unit filename="/home/sina/workspace/ColonD_CarRace/freeglut/GL/freeglut.h">
       </Unit>
       <Unit filename="/home/sina/workspace/ColonD_CarRace/freeglut/GL/freeglut_ext.h">
@@ -516,6 +558,26 @@
       </Unit>
       <Unit filename="/home/sina/workspace/ColonD_CarRace/glui/quaternion.h">
       </Unit>
+      <Unit filename="/home/sina/workspace/ColonD_CarRace/rapidjson/document.h">
+      </Unit>
+      <Unit filename="/home/sina/workspace/ColonD_CarRace/rapidjson/filestream.h">
+      </Unit>
+      <Unit filename="/home/sina/workspace/ColonD_CarRace/rapidjson/internal/pow10.h">
+      </Unit>
+      <Unit filename="/home/sina/workspace/ColonD_CarRace/rapidjson/internal/stack.h">
+      </Unit>
+      <Unit filename="/home/sina/workspace/ColonD_CarRace/rapidjson/internal/strfunc.h">
+      </Unit>
+      <Unit filename="/home/sina/workspace/ColonD_CarRace/rapidjson/prettywriter.h">
+      </Unit>
+      <Unit filename="/home/sina/workspace/ColonD_CarRace/rapidjson/rapidjson.h">
+      </Unit>
+      <Unit filename="/home/sina/workspace/ColonD_CarRace/rapidjson/reader.h">
+      </Unit>
+      <Unit filename="/home/sina/workspace/ColonD_CarRace/rapidjson/stringbuffer.h">
+      </Unit>
+      <Unit filename="/home/sina/workspace/ColonD_CarRace/rapidjson/writer.h">
+      </Unit>
       <Unit filename="/home/sina/workspace/ColonD_CarRace/CMakeLists.txt">
           <Option virtualFolder="CMake Files\" />
       </Unit>
@@ -530,6 +592,9 @@
       </Unit>
       <Unit filename="/home/sina/workspace/ColonD_CarRace/CarRace/CMakeLists.txt">
           <Option virtualFolder="CMake Files\CarRace\" />
+      </Unit>
+      <Unit filename="/home/sina/workspace/ColonD_CarRace/rapidjson/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\rapidjson\" />
       </Unit>
    </Project>
 </CodeBlocks_project_file>

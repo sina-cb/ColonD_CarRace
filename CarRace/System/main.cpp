@@ -1,12 +1,14 @@
 #include "../Game/Render.h"
 #include "../Game/Game.h"
+#include "../Learning/SimpleDriver.h"
 #include "glui/GL/glui.h"
-
+#include "../Learning/Driver.h"
 #include <cstdio>
 
 namespace
 {
 Game* game;
+Driver* driver;
 Settings settings;
 int32 width = 1024;
 int32 height = 768;
@@ -71,6 +73,8 @@ void Timer(int)
 
 void SimulationLoop()
 {
+    static int count = 0;
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glMatrixMode(GL_MODELVIEW);
@@ -78,6 +82,14 @@ void SimulationLoop()
 
     game->SetTextLine(30);
     settings.hz = settingsHz;
+
+    count++;
+
+    if (count % 10 == 0){
+        driver->drive();
+        count = 0;
+    }
+
     game->Step(&settings);
 
     game->DrawTitle(5, 15, "Car Race!");
@@ -221,6 +233,7 @@ int main(int argc, char** argv)
     GameVersion version = {0, 0, 1};
 
     game = new Game();
+    driver = new SimpleDriver(game->car);
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);

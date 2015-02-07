@@ -70,6 +70,13 @@ CarRace/CMakeFiles/DrivingLicenceTest.dir/Game/Game.o
  ../glui/GL/../../freeglut/GL/freeglut_std.h
  ../glui/GL/../../freeglut/GL/glut.h
  ../glui/GL/glui.h
+ ../rapidjson/document.h
+ ../rapidjson/filestream.h
+ ../rapidjson/internal/pow10.h
+ ../rapidjson/internal/stack.h
+ ../rapidjson/internal/strfunc.h
+ ../rapidjson/rapidjson.h
+ ../rapidjson/reader.h
  /home/sina/workspace/ColonD_CarRace/CarRace/Game/Car.h
  /home/sina/workspace/ColonD_CarRace/CarRace/Game/Game.cpp
  /home/sina/workspace/ColonD_CarRace/CarRace/Game/Game.h
@@ -152,8 +159,41 @@ CarRace/CMakeFiles/DrivingLicenceTest.dir/Game/Test.o
  /home/sina/workspace/ColonD_CarRace/CarRace/Game/Render.h
  /home/sina/workspace/ColonD_CarRace/CarRace/Game/Test.cpp
  /home/sina/workspace/ColonD_CarRace/CarRace/Game/Test.h
-CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o
- /home/sina/workspace/ColonD_CarRace/CarRace/Learning/empty.cpp
+CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o
+ ../Box2D/Box2D.h
+ ../Box2D/Collision/Shapes/b2CircleShape.h
+ ../Box2D/Collision/Shapes/b2PolygonShape.h
+ ../Box2D/Collision/Shapes/b2Shape.h
+ ../Box2D/Collision/b2BroadPhase.h
+ ../Box2D/Collision/b2Collision.h
+ ../Box2D/Collision/b2Distance.h
+ ../Box2D/Collision/b2DynamicTree.h
+ ../Box2D/Collision/b2TimeOfImpact.h
+ ../Box2D/Common/b2BlockAllocator.h
+ ../Box2D/Common/b2Math.h
+ ../Box2D/Common/b2Settings.h
+ ../Box2D/Common/b2StackAllocator.h
+ ../Box2D/Dynamics/Contacts/b2Contact.h
+ ../Box2D/Dynamics/Joints/b2DistanceJoint.h
+ ../Box2D/Dynamics/Joints/b2FrictionJoint.h
+ ../Box2D/Dynamics/Joints/b2GearJoint.h
+ ../Box2D/Dynamics/Joints/b2Joint.h
+ ../Box2D/Dynamics/Joints/b2LineJoint.h
+ ../Box2D/Dynamics/Joints/b2MouseJoint.h
+ ../Box2D/Dynamics/Joints/b2PrismaticJoint.h
+ ../Box2D/Dynamics/Joints/b2PulleyJoint.h
+ ../Box2D/Dynamics/Joints/b2RevoluteJoint.h
+ ../Box2D/Dynamics/Joints/b2WeldJoint.h
+ ../Box2D/Dynamics/b2Body.h
+ ../Box2D/Dynamics/b2ContactManager.h
+ ../Box2D/Dynamics/b2Fixture.h
+ ../Box2D/Dynamics/b2TimeStep.h
+ ../Box2D/Dynamics/b2World.h
+ ../Box2D/Dynamics/b2WorldCallbacks.h
+ /home/sina/workspace/ColonD_CarRace/CarRace/Learning/../Game/Car.h
+ /home/sina/workspace/ColonD_CarRace/CarRace/Learning/Driver.h
+ /home/sina/workspace/ColonD_CarRace/CarRace/Learning/SimpleDriver.cpp
+ /home/sina/workspace/ColonD_CarRace/CarRace/Learning/SimpleDriver.h
 CarRace/CMakeFiles/DrivingLicenceTest.dir/System/main.o
  ../Box2D/Box2D.h
  ../Box2D/Collision/Shapes/b2CircleShape.h
@@ -190,8 +230,18 @@ CarRace/CMakeFiles/DrivingLicenceTest.dir/System/main.o
  ../glui/GL/../../freeglut/GL/freeglut_std.h
  ../glui/GL/../../freeglut/GL/glut.h
  ../glui/GL/glui.h
+ ../rapidjson/document.h
+ ../rapidjson/filestream.h
+ ../rapidjson/internal/pow10.h
+ ../rapidjson/internal/stack.h
+ ../rapidjson/internal/strfunc.h
+ ../rapidjson/rapidjson.h
+ ../rapidjson/reader.h
  /home/sina/workspace/ColonD_CarRace/CarRace/System/../Game/Car.h
  /home/sina/workspace/ColonD_CarRace/CarRace/System/../Game/Game.h
  /home/sina/workspace/ColonD_CarRace/CarRace/System/../Game/Render.h
  /home/sina/workspace/ColonD_CarRace/CarRace/System/../Game/Test.h
+ /home/sina/workspace/ColonD_CarRace/CarRace/System/../Learning/../Game/Car.h
+ /home/sina/workspace/ColonD_CarRace/CarRace/System/../Learning/Driver.h
+ /home/sina/workspace/ColonD_CarRace/CarRace/System/../Learning/SimpleDriver.h
  /home/sina/workspace/ColonD_CarRace/CarRace/System/main.cpp

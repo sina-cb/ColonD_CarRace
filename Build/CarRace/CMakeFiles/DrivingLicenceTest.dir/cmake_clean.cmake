@@ -4,7 +4,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/DrivingLicenceTest.dir/Game/Render.o"
   "CMakeFiles/DrivingLicenceTest.dir/Game/Test.o"
   "CMakeFiles/DrivingLicenceTest.dir/Game/Car.o"
-  "CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o"
+  "CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o"
   "DrivingLicenceTest.pdb"
   "DrivingLicenceTest"
 )

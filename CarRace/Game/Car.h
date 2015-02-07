@@ -22,11 +22,14 @@ public:
     double HorsePower(){return HORSEPOWERS;}
     double MaxSteeringAngle(){return MAX_STEER_ANGLE;}
 
+    b2Vec2 SensorLocation();
+    double SensorRange(){return sensor_range;}
+
 private:
-    const double MAX_STEER_ANGLE;
-    const double STEER_SPEED;
-    const double SIDEWAYS_FRICTION_FORCE;
-    const double HORSEPOWERS;
+    const double MAX_STEER_ANGLE = M_PI / 4.0;
+    const double STEER_SPEED = 1.5;
+    const double SIDEWAYS_FRICTION_FORCE = 10;
+    const double HORSEPOWERS = 40;
     const b2Vec2 CAR_STARTING_POS;
 
     const b2Vec2 leftRearWheelPosition;
@@ -36,6 +39,7 @@ private:
 
     double engineSpeed;
     double steeringAngle;
+    const double sensor_range = 8;
 
     b2World* world;
 
@@ -47,7 +51,6 @@ private:
 
     b2RevoluteJoint* leftJoint;
     b2RevoluteJoint* rightJoint;
-
 };
 
 #endif

@@ -15,7 +15,9 @@ set(GAME_SRCS
 
 #Define the learning files.
 set(LEARNING_SRCS
-        Learning/empty.cpp
+	Learning/Driver.h
+        Learning/SimpleDriver.h
+        Learning/SimpleDriver.cpp
 )
 
 #Define the system files.
@@ -31,6 +33,7 @@ source_group(System FILES ${SYSTEM_SRCS})
 include_directories (
 	${OPENGL_INCLUDE_DIR}
 	${Box2D_SOURCE_DIR}
+	../rapidjson
 )
 
 if(APPLE)
@@ -51,5 +54,6 @@ target_link_libraries (
 	Box2D
 	freeglut_static
 	glui
+	rapidjson
 	${OPENGL_LIBRARIES}
 )

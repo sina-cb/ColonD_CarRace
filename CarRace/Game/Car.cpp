@@ -1,10 +1,11 @@
 #include "Car.h"
 #include <Box2D/Common/b2Math.h>
 
-Car::Car(b2World *world):CAR_STARTING_POS(10, 10), leftRearWheelPosition(-1.5, 1.90),
-    rightRearWheelPosition(1.5, 1.9), leftFrontWheelPosition(-1.5, -1.9),
-    rightFrontWheelPosition(1.5, -1.9), MAX_STEER_ANGLE(M_PI / 6.0),
-    STEER_SPEED(1.5), SIDEWAYS_FRICTION_FORCE(10), HORSEPOWERS(40)
+Car::Car(b2World *world): CAR_STARTING_POS(10, 10),
+    leftRearWheelPosition(-1.5, 1.90),
+    rightRearWheelPosition(1.5, 1.9),
+    leftFrontWheelPosition(-1.5, -1.9),
+    rightFrontWheelPosition(1.5, -1.9)
 {
     this->world = world;
 
@@ -13,16 +14,6 @@ Car::Car(b2World *world):CAR_STARTING_POS(10, 10), leftRearWheelPosition(-1.5, 1
 
     b2BodyDef * staticDef = new b2BodyDef();
     staticDef->position.Set(5.0, 5.0);
-
-    //Create some static stuff
-    b2PolygonShape* staticBox = new b2PolygonShape();
-    staticBox->SetAsBox(5, 5);
-    staticDef->position.Set(10, 0);
-    world->CreateBody(staticDef)->CreateFixture(staticBox, 1);
-    staticDef->position.Set(0, 10);
-    world->CreateBody(staticDef)->CreateFixture(staticBox, 1);
-    staticDef->position.Set(10, 20);
-    world->CreateBody(staticDef)->CreateFixture(staticBox, 1);
 
     // define our body
     b2BodyDef* bodyDef = new b2BodyDef();
@@ -34,16 +25,22 @@ Car::Car(b2World *world):CAR_STARTING_POS(10, 10), leftRearWheelPosition(-1.5, 1
     body = world->CreateBody(bodyDef);
     body->ResetMassData();
 
+    int* userD = new int[2];
+    userD[0] = 1;
+    userD[1] = 2;
+
     b2BodyDef* leftWheelDef = new b2BodyDef();
     leftWheelDef->type = b2_dynamicBody;
     leftWheelDef->position = CAR_STARTING_POS;
     leftWheelDef->position += leftFrontWheelPosition;
+    leftWheelDef->userData = userD + 0;
     leftWheel = world->CreateBody(leftWheelDef);
 
     b2BodyDef* rightWheelDef = new b2BodyDef();
     rightWheelDef->type = b2_dynamicBody;
     rightWheelDef->position = CAR_STARTING_POS;
     rightWheelDef->position += rightFrontWheelPosition;
+    rightWheelDef->userData = userD + 1;
     rightWheel = world->CreateBody(rightWheelDef);
 
     b2BodyDef* leftRearWheelDef = new b2BodyDef();
@@ -119,6 +116,12 @@ Car::Car(b2World *world):CAR_STARTING_POS(10, 10), leftRearWheelPosition(-1.5, 1
 
     world->CreateJoint(leftRearJointDef);
     world->CreateJoint(rightRearJointDef);
+
+    body->SetTransform(b2Vec2(-10, 10), 0.0);
+    leftWheel->SetTransform(b2Vec2(-10, 10), 0.0);
+    rightWheel->SetTransform(b2Vec2(-10, 10), 0.0);
+    leftRearWheel->SetTransform(b2Vec2(-10, 10), 0.0);
+    rightRearWheel->SetTransform(b2Vec2(-10, 10), 0.0);
 }
 
 //This function applies a "friction" in a direction orthogonal to the body's axis.
@@ -154,4 +157,10 @@ void Car::Update(){
     leftJoint->SetMotorSpeed(mspeed * STEER_SPEED);
     mspeed = steeringAngle - rightJoint->GetJointAngle();
     rightJoint->SetMotorSpeed(mspeed * STEER_SPEED);
+}
+
+b2Vec2 Car::SensorLocation(){
+    b2Vec2 center = rightWheel->GetTransform().position + leftWheel->GetTransform().position;
+    center.Set(center.x / 2.0, center.y / 2.0);
+    return center;
 }

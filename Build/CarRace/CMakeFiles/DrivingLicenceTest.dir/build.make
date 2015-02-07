@@ -161,28 +161,28 @@ CarRace/CMakeFiles/DrivingLicenceTest.dir/Game/Car.o.provides: CarRace/CMakeFile
 
 CarRace/CMakeFiles/DrivingLicenceTest.dir/Game/Car.o.provides.build: CarRace/CMakeFiles/DrivingLicenceTest.dir/Game/Car.o
 
-CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o: CarRace/CMakeFiles/DrivingLicenceTest.dir/flags.make
-CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o: ../CarRace/Learning/empty.cpp
+CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o: CarRace/CMakeFiles/DrivingLicenceTest.dir/flags.make
+CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o: ../CarRace/Learning/SimpleDriver.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/sina/workspace/ColonD_CarRace/Build/CMakeFiles $(CMAKE_PROGRESS_6)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o"
-	cd /home/sina/workspace/ColonD_CarRace/Build/CarRace && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o -c /home/sina/workspace/ColonD_CarRace/CarRace/Learning/empty.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o"
+	cd /home/sina/workspace/ColonD_CarRace/Build/CarRace && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o -c /home/sina/workspace/ColonD_CarRace/CarRace/Learning/SimpleDriver.cpp
 
-CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DrivingLicenceTest.dir/Learning/empty.i"
-	cd /home/sina/workspace/ColonD_CarRace/Build/CarRace && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sina/workspace/ColonD_CarRace/CarRace/Learning/empty.cpp > CMakeFiles/DrivingLicenceTest.dir/Learning/empty.i
+CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.i"
+	cd /home/sina/workspace/ColonD_CarRace/Build/CarRace && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sina/workspace/ColonD_CarRace/CarRace/Learning/SimpleDriver.cpp > CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.i
 
-CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DrivingLicenceTest.dir/Learning/empty.s"
-	cd /home/sina/workspace/ColonD_CarRace/Build/CarRace && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sina/workspace/ColonD_CarRace/CarRace/Learning/empty.cpp -o CMakeFiles/DrivingLicenceTest.dir/Learning/empty.s
+CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.s"
+	cd /home/sina/workspace/ColonD_CarRace/Build/CarRace && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sina/workspace/ColonD_CarRace/CarRace/Learning/SimpleDriver.cpp -o CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.s
 
-CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o.requires:
-.PHONY : CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o.requires
+CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o.requires:
+.PHONY : CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o.requires
 
-CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o.provides: CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o.requires
-	$(MAKE) -f CarRace/CMakeFiles/DrivingLicenceTest.dir/build.make CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o.provides.build
-.PHONY : CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o.provides
+CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o.provides: CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o.requires
+	$(MAKE) -f CarRace/CMakeFiles/DrivingLicenceTest.dir/build.make CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o.provides.build
+.PHONY : CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o.provides
 
-CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o.provides.build: CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o
+CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o.provides.build: CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o
 
 # Object files for target DrivingLicenceTest
 DrivingLicenceTest_OBJECTS = \
@@ -191,7 +191,7 @@ DrivingLicenceTest_OBJECTS = \
 "CMakeFiles/DrivingLicenceTest.dir/Game/Render.o" \
 "CMakeFiles/DrivingLicenceTest.dir/Game/Test.o" \
 "CMakeFiles/DrivingLicenceTest.dir/Game/Car.o" \
-"CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o"
+"CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o"
 
 # External object files for target DrivingLicenceTest
 DrivingLicenceTest_EXTERNAL_OBJECTS =
@@ -201,10 +201,11 @@ CarRace/DrivingLicenceTest: CarRace/CMakeFiles/DrivingLicenceTest.dir/Game/Game.
 CarRace/DrivingLicenceTest: CarRace/CMakeFiles/DrivingLicenceTest.dir/Game/Render.o
 CarRace/DrivingLicenceTest: CarRace/CMakeFiles/DrivingLicenceTest.dir/Game/Test.o
 CarRace/DrivingLicenceTest: CarRace/CMakeFiles/DrivingLicenceTest.dir/Game/Car.o
-CarRace/DrivingLicenceTest: CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o
+CarRace/DrivingLicenceTest: CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o
 CarRace/DrivingLicenceTest: Box2D/libBox2D.a
 CarRace/DrivingLicenceTest: freeglut/libfreeglut_static.a
 CarRace/DrivingLicenceTest: glui/libglui.a
+CarRace/DrivingLicenceTest: rapidjson/librapidjson.a
 CarRace/DrivingLicenceTest: /usr/lib/x86_64-linux-gnu/libGLU.so
 CarRace/DrivingLicenceTest: /usr/lib/x86_64-linux-gnu/libGL.so
 CarRace/DrivingLicenceTest: /usr/lib/x86_64-linux-gnu/libSM.so
@@ -225,7 +226,7 @@ CarRace/CMakeFiles/DrivingLicenceTest.dir/requires: CarRace/CMakeFiles/DrivingLi
 CarRace/CMakeFiles/DrivingLicenceTest.dir/requires: CarRace/CMakeFiles/DrivingLicenceTest.dir/Game/Render.o.requires
 CarRace/CMakeFiles/DrivingLicenceTest.dir/requires: CarRace/CMakeFiles/DrivingLicenceTest.dir/Game/Test.o.requires
 CarRace/CMakeFiles/DrivingLicenceTest.dir/requires: CarRace/CMakeFiles/DrivingLicenceTest.dir/Game/Car.o.requires
-CarRace/CMakeFiles/DrivingLicenceTest.dir/requires: CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/empty.o.requires
+CarRace/CMakeFiles/DrivingLicenceTest.dir/requires: CarRace/CMakeFiles/DrivingLicenceTest.dir/Learning/SimpleDriver.o.requires
 .PHONY : CarRace/CMakeFiles/DrivingLicenceTest.dir/requires
 
 CarRace/CMakeFiles/DrivingLicenceTest.dir/clean:

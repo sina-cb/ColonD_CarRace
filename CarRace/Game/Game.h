@@ -22,6 +22,11 @@
 #include "Test.h"
 #include "Car.h"
 #include <cstring>
+#include <iostream>
+#include <rapidjson/document.h>
+#include <rapidjson/filestream.h>
+
+using namespace std;
 
 // This test demonstrates how to use the world ray-cast feature.
 // NOTE: we are intentionally filtering one of the polygons, therefore
@@ -44,7 +49,7 @@ public:
 		if (userData)
 		{
 			int32 index = *(int32*)userData;
-			if (index == 0)
+            if (index == 1 || index == 2)
 			{
 				// filter
 				return -1.0f;
@@ -85,8 +90,6 @@ public:
 	int32 m_userData[e_maxBodies];
 	b2PolygonShape m_polygons[4];
 	b2CircleShape m_circle;
-
-	float32 m_angle;
 
     Car *car;
 };
