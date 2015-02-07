@@ -126,15 +126,12 @@ void b2Free(void* mem);
 
 /// Version numbering scheme.
 /// See http://en.wikipedia.org/wiki/Software_versioning
-struct b2Version
+struct GameVersion
 {
 	int32 major;		///< significant changes
 	int32 minor;		///< incremental changes
 	int32 revision;		///< bug fixes
 };
-
-/// Current version.
-extern b2Version b2_version;
 
 /// Friction mixing law. Feel free to customize this.
 inline float32 b2MixFriction(float32 friction1, float32 friction2)

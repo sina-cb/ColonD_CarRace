@@ -2,58 +2,31 @@
 add_definitions( -DFREEGLUT_EXPORTS -DFREEGLUT_STATIC -D_CRT_SECURE_NO_WARNINGS )
 
 # Define the framework files.
-set(CAR_RACE_SRCS
-	Framework/Main.cpp
-	Framework/Render.cpp
-	Framework/Render.h
-	Framework/Test.cpp
-	Framework/Test.h
+set(GAME_SRCS
+        Game/Game.cpp
+        Game/Game.h
+        Game/Render.cpp
+        Game/Render.h
+        Game/Test.cpp
+        Game/Test.h
+	Game/Car.h
+	Game/Car.cpp
 )
 
-#define the test files.
-set(CAR_RACE_TEST_SRCS
-	Tests/TestEntries.cpp
-	Tests/ApplyForce.h
-	Tests/BodyTypes.h
-	Tests/Breakable.h
-	Tests/Bridge.h
-	Tests/Cantilever.h
-	Tests/Chain.h
-	Tests/CharacterCollision.h
-	Tests/CollisionFiltering.h
-	Tests/CollisionProcessing.h
-	Tests/CompoundShapes.h
-	Tests/Confined.h
-	Tests/ContinuousTest.h
-	Tests/DistanceTest.h
-	Tests/Dominos.h
-	Tests/DynamicTreeTest.h
-	Tests/EdgeShapes.h
-	Tests/Gears.h
-	Tests/LineJoint.h
-	Tests/OneSidedPlatform.h
-	Tests/PolyCollision.h
-	Tests/PolyShapes.h
-	Tests/Prismatic.h
-	Tests/Pulleys.h
-	Tests/Pyramid.h
-	Tests/RayCast.h
-	Tests/Revolute.h
-	Tests/SensorTest.h
-	Tests/ShapeEditing.h
-	Tests/SliderCrank.h
-	Tests/SphereStack.h
-	Tests/TheoJansen.h
-	Tests/TimeOfImpact.h
-	Tests/VaryingFriction.h
-	Tests/VaryingRestitution.h
-	Tests/VerticalStack.h
-	Tests/Web.h
+#Define the learning files.
+set(LEARNING_SRCS
+        Learning/empty.cpp
+)
+
+#Define the system files.
+set(SYSTEM_SRCS
+        System/main.cpp
 )
 
 # These are used to create visual studio folders.
-source_group(Framework FILES ${CAR_RACE_SRCS})
-source_group(Tests FILES ${CAR_RACE_TEST_SRCS})
+source_group(Game FILES ${GAME_SRCS})
+source_group(Learning FILES ${LEARNING_SRCS})
+source_group(System FILES ${SYSTEM_SRCS})
 
 include_directories (
 	${OPENGL_INCLUDE_DIR}
@@ -67,13 +40,14 @@ if(APPLE)
 	set (OPENGL_LIBRARIES GL GLU GLUT X11)
 endif(APPLE)
 
-add_executable(CarRace
-	${CAR_RACE_SRCS}
-	${CAR_RACE_TEST_SRCS}
+add_executable(DrivingLicenceTest
+        ${SYSTEM_SRCS}
+        ${GAME_SRCS}
+        ${LEARNING_SRCS}
 )
 
 target_link_libraries (
-	CarRace
+        DrivingLicenceTest
 	Box2D
 	freeglut_static
 	glui

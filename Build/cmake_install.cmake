@@ -38,7 +38,6 @@ IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   INCLUDE("/home/sina/workspace/ColonD_CarRace/Build/freeglut/cmake_install.cmake")
   INCLUDE("/home/sina/workspace/ColonD_CarRace/Build/glui/cmake_install.cmake")
   INCLUDE("/home/sina/workspace/ColonD_CarRace/Build/CarRace/cmake_install.cmake")
-  INCLUDE("/home/sina/workspace/ColonD_CarRace/Build/Testbed/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)
 

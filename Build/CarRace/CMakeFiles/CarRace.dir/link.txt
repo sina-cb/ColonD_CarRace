@@ -1,1 +1,0 @@
-/usr/bin/c++       CMakeFiles/CarRace.dir/Framework/Main.o CMakeFiles/CarRace.dir/Framework/Render.o CMakeFiles/CarRace.dir/Framework/Test.o CMakeFiles/CarRace.dir/Tests/TestEntries.o  -o CarRace -rdynamic ../Box2D/libBox2D.a ../freeglut/libfreeglut_static.a ../glui/libglui.a -lGLU -lGL -lSM -lICE -lX11 -lXext 
