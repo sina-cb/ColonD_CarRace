@@ -11,17 +11,9 @@ Game::Game()
     car->SetLocation(0, 0, b2_pi / 2.0);
 }
 
-void Game::DestroyBody()
+void Game::DestroyBody(b2Body* body)
 {
-    for (int32 i = 0; i < e_maxBodies; ++i)
-    {
-        if (m_bodies[i] != NULL)
-        {
-            m_world->DestroyBody(m_bodies[i]);
-            m_bodies[i] = NULL;
-            return;
-        }
-    }
+    m_world->DestroyBody(body);
 }
 
 void Game::KeyboardSpecial(int key, int x, int y){
@@ -129,10 +121,31 @@ void Game::Step(Settings* settings)
     {
         ContactPoint* point = m_points + i;
 
-        //        b2Body* body1 = point->fixtureA->GetBody();
-        //        b2Body* body2 = point->fixtureB->GetBody();
-        //        float32 mass1 = body1->GetMass();
-        //        float32 mass2 = body2->GetMass();
+        b2Body* body1 = point->fixtureA->GetBody();
+        b2Body* body2 = point->fixtureB->GetBody();
+
+        int32 index1 = 0;
+        int32 index2 = 0;
+
+        void* userData = body1->GetUserData();
+        if (userData)
+        {
+            index1 = *(int32*)userData;
+        }
+
+        userData = body2->GetUserData();
+        if (userData)
+        {
+            index2 = *(int32*)userData;
+        }
+
+        if (index1 == Track::TRACK_USER_DATA_VALUE){
+            DestroyBody(body1);
+            return;
+        }else if (index2 == Track::TRACK_USER_DATA_VALUE){
+            DestroyBody(body2);
+            return;
+        }
 
         cout << "Iteration " << iterations << ": Collided!" << endl;
         iterations++;
@@ -147,4 +160,7 @@ void Game::Restart(){
     car->SteeringAngle(0);
     car->EngineSpeed(0);
     car->SetLocation(0, 0, b2_pi / 2.0);
+
+    delete track;
+    track = new Track(m_world);
 }

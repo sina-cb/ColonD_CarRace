@@ -50,7 +50,7 @@ public:
         if (userData)
         {
             int32 index = *(int32*)userData;
-            if (index == 1 || index == 2)
+            if (index == 1 || index == 2 || index == 3)
             {
                 // filter
                 return -1.0f;
@@ -86,7 +86,7 @@ public:
 
     Game();
 
-    void DestroyBody();
+    void DestroyBody(b2Body* body);
     void Keyboard(unsigned char key);
     void KeyboardSpecial(int key, int x, int y);
     void KeyboardUp(unsigned char key);
