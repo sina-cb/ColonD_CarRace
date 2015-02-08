@@ -37,45 +37,52 @@ using namespace std;
 class RayCastClosestCallback : public b2RayCastCallback
 {
 public:
-	RayCastClosestCallback()
-	{
-		m_hit = false;
-	}
+    RayCastClosestCallback()
+    {
+        m_hit = false;
+    }
 
-	float32 ReportFixture(	b2Fixture* fixture, const b2Vec2& point,
-		const b2Vec2& normal, float32 fraction)
-	{
-		b2Body* body = fixture->GetBody();
-		void* userData = body->GetUserData();
-		if (userData)
-		{
-			int32 index = *(int32*)userData;
+    float32 ReportFixture(	b2Fixture* fixture, const b2Vec2& point,
+                            const b2Vec2& normal, float32 fraction)
+    {
+        b2Body* body = fixture->GetBody();
+        void* userData = body->GetUserData();
+        if (userData)
+        {
+            int32 index = *(int32*)userData;
             if (index == 1 || index == 2)
-			{
-				// filter
-				return -1.0f;
-			}
-		}
+            {
+                // filter
+                return -1.0f;
+            }
+        }
 
-		m_hit = true;
-		m_point = point;
-		m_normal = normal;
-		return fraction;
-	}
-	
-	bool m_hit;
-	b2Vec2 m_point;
-	b2Vec2 m_normal;
+        m_hit = true;
+        m_point = point;
+        m_normal = normal;
+        return fraction;
+    }
+
+    bool m_hit;
+    b2Vec2 m_point;
+    b2Vec2 m_normal;
 };
 
 class Game : public Test
 {
 public:
 
-	enum
-	{
-		e_maxBodies = 256,
-	};
+    enum
+    {
+        e_maxBodies = 256,
+    };
+
+    enum entityCategory {
+        BOUNDARY    =   0x0001,
+        WHEEL       =   0x0002,
+        BODY        =   0x0004,
+        CHECKPOINT  =   0x0008,
+    };
 
     Game();
 
@@ -85,10 +92,11 @@ public:
     void KeyboardUp(unsigned char key);
     void KeyboardSpecialUp(int key, int x, int y);
     void Step(Settings* settings);
+    void Restart();
 
     static Test* Create(){return new Game;}
 
-	b2Body* m_bodies[e_maxBodies];
+    b2Body* m_bodies[e_maxBodies];
 
     Car* car;
     Track* track;

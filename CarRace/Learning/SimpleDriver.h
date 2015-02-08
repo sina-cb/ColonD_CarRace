@@ -8,6 +8,7 @@ class SimpleDriver : public Driver{
 public:
     SimpleDriver(Car* car);
     void drive();
+    void Restart();
 
 private:
     int direction;

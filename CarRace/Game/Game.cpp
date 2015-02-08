@@ -57,9 +57,8 @@ void Game::Keyboard(unsigned char key)
     switch (key)
     {
     case 's':
-        car->EngineSpeed(0);
+        car->EngineSpeed(-car->HorsePower());
         car->SteeringAngle(0);
-        cout << "Reset speed!" << endl;
         break;
     default:
         break;
@@ -103,7 +102,7 @@ void Game::Step(Settings* settings)
     m_debugDraw.DrawString(5, m_textLine, "Top-down car racing simulation!");
     m_textLine += 15;
 
-    for (int i = 0; i < 5; i++){
+    for (int i = 0; i < Car::sensor_count; i++){
         b2Vec2 point1 = car->SensorLocation();
         float32 angle = car->Body()->GetAngle() - (b2_pi / 4.0) * i;
         b2Vec2 d(car->SensorRange() * cosf(angle), car->SensorRange() * sinf(angle));
@@ -119,6 +118,33 @@ void Game::Step(Settings* settings)
             b2Vec2 head = callback.m_point + 0.5f * callback.m_normal;
             m_debugDraw.DrawSegment(callback.m_point, head, b2Color(0.9f, 0.9f, 0.4f));
         }
+
+        double dx = point1.x - callback.m_point.x;
+        double dy = point1.y - callback.m_point.y;
+        car->sensor_data[i] = sqrt(dx * dx + dy * dy);
     }
 
+    static int iterations = 0;
+    for (int32 i = 0; i < m_pointCount; ++i)
+    {
+        ContactPoint* point = m_points + i;
+
+        //        b2Body* body1 = point->fixtureA->GetBody();
+        //        b2Body* body2 = point->fixtureB->GetBody();
+        //        float32 mass1 = body1->GetMass();
+        //        float32 mass2 = body2->GetMass();
+
+        cout << "Iteration " << iterations << ": Collided!" << endl;
+        iterations++;
+        Restart();
+        car->EngineSpeed(-car->HorsePower());
+        break;
+    }
+}
+
+void Game::Restart(){
+    car->ForceStop();
+    car->SteeringAngle(0);
+    car->EngineSpeed(0);
+    car->SetLocation(0, 0, b2_pi / 2.0);
 }

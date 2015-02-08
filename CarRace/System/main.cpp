@@ -23,6 +23,8 @@ bool rMouseDown;
 b2Vec2 lastp;
 }
 
+void RestartSystem();
+
 void Resize(int32 w, int32 h)
 {
     width = w;
@@ -91,7 +93,6 @@ void SimulationLoop()
     }
 
     game->Step(&settings);
-
     game->DrawTitle(5, 15, "Car Race!");
 
     glutSwapBuffers();
@@ -122,8 +123,7 @@ void Keyboard(unsigned char key, int x, int y)
 
         // Press 'r' to reset.
     case 'r':
-        delete game;
-        game = new Game();
+        RestartSystem();
         break;
 
     case 'p':
@@ -213,8 +213,16 @@ void MouseMotion(int32 x, int32 y)
 void Restart(int)
 {
     delete game;
+    delete driver;
     game = new Game();
+    driver = new SimpleDriver(game->car);
+
     Resize(width, height);
+}
+
+void RestartSystem(){
+    game->Restart();
+    driver->Restart();
 }
 
 void Pause(int)

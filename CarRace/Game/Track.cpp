@@ -1,4 +1,5 @@
 #include "Track.h"
+#include "Game.h"
 #include <Box2D/Common/b2Math.h>
 
 Track::Track(b2World *world)
@@ -62,7 +63,12 @@ Track::Track(b2World *world)
         b2PolygonShape shape;
         shape.SetAsEdge(b2Vec2(inner_track[i][0] + x_shift, inner_track[i][1] + y_shift),
                 b2Vec2(inner_track[i + 1][0] + x_shift, inner_track[i + 1][1] + y_shift));
-        track->CreateFixture(&shape, 0.0f);
+        b2FixtureDef* fixtureDef = new b2FixtureDef();
+        fixtureDef->shape = &shape;
+        fixtureDef->density = 0.0f;
+        fixtureDef->filter.categoryBits = Game::BOUNDARY;
+        fixtureDef->filter.maskBits = Game::BODY | Game::WHEEL;
+        track->CreateFixture(fixtureDef);
     }
 
 }

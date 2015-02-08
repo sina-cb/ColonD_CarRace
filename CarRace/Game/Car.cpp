@@ -1,4 +1,5 @@
 #include "Car.h"
+#include "Game.h"
 #include <Box2D/Common/b2Math.h>
 
 Car::Car(b2World *world): CAR_STARTING_POS(10, 10),
@@ -59,31 +60,56 @@ Car::Car(b2World *world): CAR_STARTING_POS(10, 10),
     body = world->CreateBody(bodyDef);
     b2PolygonShape* boxDef = new b2PolygonShape();
     boxDef->SetAsBox(1.5, 2.5);
-    body->CreateFixture(boxDef, 1);
+    b2FixtureDef* bodyFix = new b2FixtureDef();
+    bodyFix->shape = boxDef;
+    bodyFix->density = 1.0;
+    bodyFix->filter.categoryBits = Game::BODY;
+    bodyFix->filter.maskBits = Game::BOUNDARY;
+    body->CreateFixture(bodyFix);
 
     //Left Wheel shape
     leftWheel = world->CreateBody(leftWheelDef);
     b2PolygonShape* leftWheelShapeDef = new b2PolygonShape();
     leftWheelShapeDef->SetAsBox(0.2, 0.5);
-    leftWheel->CreateFixture(leftWheelShapeDef, 1);
+    b2FixtureDef* leftWheelFix = new b2FixtureDef();
+    leftWheelFix->shape = leftWheelShapeDef;
+    leftWheelFix->density = 1.0;
+    leftWheelFix->filter.categoryBits = Game::WHEEL;
+    leftWheelFix->filter.maskBits = Game::BOUNDARY;
+    leftWheel->CreateFixture(leftWheelFix);
 
     //Right Wheel shape
     rightWheel = world->CreateBody(rightWheelDef);
     b2PolygonShape* rightWheelShapeDef = new b2PolygonShape();
     rightWheelShapeDef->SetAsBox(0.2, 0.5);
-    rightWheel->CreateFixture(rightWheelShapeDef, 1);
+    b2FixtureDef* rightWheelFix = new b2FixtureDef();
+    rightWheelFix->shape = rightWheelShapeDef;
+    rightWheelFix->density = 1.0;
+    rightWheelFix->filter.categoryBits = Game::WHEEL;
+    rightWheelFix->filter.maskBits = Game::BOUNDARY;
+    rightWheel->CreateFixture(rightWheelFix);
 
     //Left Wheel shape
     leftRearWheel = world->CreateBody(leftRearWheelDef);
     b2PolygonShape* leftRearWheelShapeDef = new b2PolygonShape();
     leftRearWheelShapeDef->SetAsBox(0.2, 0.5);
-    leftRearWheel->CreateFixture(leftRearWheelShapeDef, 1);
+    b2FixtureDef* leftRearWheelFix = new b2FixtureDef();
+    leftRearWheelFix->shape = leftRearWheelShapeDef;
+    leftRearWheelFix->density = 1.0;
+    leftRearWheelFix->filter.categoryBits = Game::WHEEL;
+    leftRearWheelFix->filter.maskBits = Game::BOUNDARY;
+    leftRearWheel->CreateFixture(leftRearWheelFix);
 
     //Right Wheel shape
     rightRearWheel = world->CreateBody(rightRearWheelDef);
     b2PolygonShape* rightRearWheelShapeDef = new b2PolygonShape();
     rightRearWheelShapeDef->SetAsBox(0.2, 0.5);
-    rightRearWheel->CreateFixture(rightRearWheelShapeDef, 1);
+    b2FixtureDef* rightRearWheelFix = new b2FixtureDef();
+    rightRearWheelFix->shape = rightRearWheelShapeDef;
+    rightRearWheelFix->density = 1.0;
+    rightRearWheelFix->filter.categoryBits = Game::WHEEL;
+    rightRearWheelFix->filter.maskBits = Game::BOUNDARY;
+    rightRearWheel->CreateFixture(rightRearWheelFix);
 
     body->ResetMassData();
     leftWheel->ResetMassData();
@@ -116,6 +142,8 @@ Car::Car(b2World *world): CAR_STARTING_POS(10, 10),
 
     world->CreateJoint(leftRearJointDef);
     world->CreateJoint(rightRearJointDef);
+
+    sensor_data = new double[sensor_count];
 }
 
 void Car::SetLocation(float32 x, float32 y, float32 angle){
@@ -165,4 +193,59 @@ b2Vec2 Car::SensorLocation(){
     b2Vec2 center = rightWheel->GetTransform().position + leftWheel->GetTransform().position;
     center.Set(center.x / 2.0, center.y / 2.0);
     return center;
+}
+
+void Car::ForceStop(){
+    float desiredVel = 0;
+
+    //////////////////// Stop the Body ////////////////////
+    b2Vec2 vel = body->GetLinearVelocity();
+    float velChange = desiredVel - vel.x;
+    float impulse = body->GetMass() * velChange; //disregard time factor
+    body->ApplyLinearImpulse(b2Vec2(impulse, 0), body->GetWorldCenter());
+
+    velChange = desiredVel - vel.y;
+    impulse = body->GetMass() * velChange; //disregard time factor
+    body->ApplyLinearImpulse(b2Vec2(0, impulse), body->GetWorldCenter());
+
+    //////////////////// Stop the left wheel ////////////////////
+    vel = leftWheel->GetLinearVelocity();
+    velChange = desiredVel - vel.x;
+    impulse = leftWheel->GetMass() * velChange; //disregard time factor
+    leftWheel->ApplyLinearImpulse(b2Vec2(impulse, 0), leftWheel->GetWorldCenter());
+
+    velChange = desiredVel - vel.y;
+    impulse = leftWheel->GetMass() * velChange; //disregard time factor
+    leftWheel->ApplyLinearImpulse(b2Vec2(0, impulse), leftWheel->GetWorldCenter());
+
+    //////////////////// Stop the right wheel ////////////////////
+    vel = rightWheel->GetLinearVelocity();
+    velChange = desiredVel - vel.x;
+    impulse = rightWheel->GetMass() * velChange; //disregard time factor
+    rightWheel->ApplyLinearImpulse(b2Vec2(impulse, 0), rightWheel->GetWorldCenter());
+
+    velChange = desiredVel - vel.y;
+    impulse = rightWheel->GetMass() * velChange; //disregard time factor
+    rightWheel->ApplyLinearImpulse(b2Vec2(0, impulse), rightWheel->GetWorldCenter());
+
+    //////////////////// Stop the left rear wheel ////////////////////
+    vel = leftRearWheel->GetLinearVelocity();
+    velChange = desiredVel - vel.x;
+    impulse = leftRearWheel->GetMass() * velChange; //disregard time factor
+    leftRearWheel->ApplyLinearImpulse(b2Vec2(impulse, 0), leftRearWheel->GetWorldCenter());
+
+    velChange = desiredVel - vel.y;
+    impulse = leftRearWheel->GetMass() * velChange; //disregard time factor
+    leftRearWheel->ApplyLinearImpulse(b2Vec2(0, impulse), leftRearWheel->GetWorldCenter());
+
+    //////////////////// Stop the right rear wheel ////////////////////
+    vel = rightRearWheel->GetLinearVelocity();
+    velChange = desiredVel - vel.x;
+    impulse = rightRearWheel->GetMass() * velChange; //disregard time factor
+    rightRearWheel->ApplyLinearImpulse(b2Vec2(impulse, 0), rightRearWheel->GetWorldCenter());
+
+    velChange = desiredVel - vel.y;
+    impulse = rightRearWheel->GetMass() * velChange; //disregard time factor
+    rightRearWheel->ApplyLinearImpulse(b2Vec2(0, impulse), rightRearWheel->GetWorldCenter());
+
 }

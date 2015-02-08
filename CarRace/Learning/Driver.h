@@ -19,6 +19,10 @@ public:
 
     }
 
+    virtual void Restart(){
+
+    }
+
     Car* car;
 
 };
