@@ -1,5 +1,0 @@
-/home/sina/workspace/ColonD_CarRace/Build/Box2D/CMakeFiles/Box2D.dir
-/home/sina/workspace/ColonD_CarRace/Build/CarRace/CMakeFiles/DrivingLicenceTest.dir
-/home/sina/workspace/ColonD_CarRace/Build/freeglut/CMakeFiles/freeglut_static.dir
-/home/sina/workspace/ColonD_CarRace/Build/glui/CMakeFiles/glui.dir
-/home/sina/workspace/ColonD_CarRace/Build/rapidjson/CMakeFiles/rapidjson.dir

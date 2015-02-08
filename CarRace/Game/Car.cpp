@@ -116,12 +116,14 @@ Car::Car(b2World *world): CAR_STARTING_POS(10, 10),
 
     world->CreateJoint(leftRearJointDef);
     world->CreateJoint(rightRearJointDef);
+}
 
-    body->SetTransform(b2Vec2(-10, 10), 0.0);
-    leftWheel->SetTransform(b2Vec2(-10, 10), 0.0);
-    rightWheel->SetTransform(b2Vec2(-10, 10), 0.0);
-    leftRearWheel->SetTransform(b2Vec2(-10, 10), 0.0);
-    rightRearWheel->SetTransform(b2Vec2(-10, 10), 0.0);
+void Car::SetLocation(float32 x, float32 y, float32 angle){
+    body->SetTransform(b2Vec2(x, y), angle);
+    leftWheel->SetTransform(b2Vec2(x, y), angle);
+    rightWheel->SetTransform(b2Vec2(x, y), angle);
+    leftRearWheel->SetTransform(b2Vec2(x, y), angle);
+    rightRearWheel->SetTransform(b2Vec2(x, y), angle);
 }
 
 //This function applies a "friction" in a direction orthogonal to the body's axis.

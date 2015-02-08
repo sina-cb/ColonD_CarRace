@@ -21,6 +21,7 @@
 
 #include "Test.h"
 #include "Car.h"
+#include "Track.h"
 #include <cstring>
 #include <iostream>
 #include <rapidjson/document.h>
@@ -81,17 +82,16 @@ public:
     void DestroyBody();
     void Keyboard(unsigned char key);
     void KeyboardSpecial(int key, int x, int y);
+    void KeyboardUp(unsigned char key);
+    void KeyboardSpecialUp(int key, int x, int y);
     void Step(Settings* settings);
 
     static Test* Create(){return new Game;}
 
-	int32 m_bodyIndex;
 	b2Body* m_bodies[e_maxBodies];
-	int32 m_userData[e_maxBodies];
-	b2PolygonShape m_polygons[4];
-	b2CircleShape m_circle;
 
-    Car *car;
+    Car* car;
+    Track* track;
 };
 
 #endif

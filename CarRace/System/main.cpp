@@ -228,6 +228,16 @@ void SingleStep(int)
     settings.singleStep = 1;
 }
 
+void KeyboardUp(unsigned char key, int x, int y)
+{
+    game->KeyboardUp(key);
+}
+
+void KeyboardSpecialUp(int key, int x, int y)
+{
+    game->KeyboardSpecialUp(key, x, y);
+}
+
 int main(int argc, char** argv)
 {
     GameVersion version = {0, 0, 1};
@@ -248,6 +258,8 @@ int main(int argc, char** argv)
     GLUI_Master.set_glutKeyboardFunc(Keyboard);
     GLUI_Master.set_glutSpecialFunc(KeyboardSpecial);
     GLUI_Master.set_glutMouseFunc(Mouse);
+    glutKeyboardUpFunc(KeyboardUp);
+    glutSpecialUpFunc(KeyboardSpecialUp);
     glutMotionFunc(MouseMotion);
 
     // Use a timer to control the frame rate.

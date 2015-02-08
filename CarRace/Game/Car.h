@@ -25,6 +25,8 @@ public:
     b2Vec2 SensorLocation();
     double SensorRange(){return sensor_range;}
 
+    void SetLocation(float32 x, float32 y, float32 angle);
+
 private:
     const double MAX_STEER_ANGLE = M_PI / 4.0;
     const double STEER_SPEED = 1.5;

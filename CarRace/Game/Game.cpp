@@ -6,30 +6,9 @@ Game::Game()
 {
     m_world->SetGravity(b2Vec2(0.0, 0.0));
 
-    //Load the track
-    {
-
-        double track_points[][2] =  { {0.0, 0.0},
-                                   {2.0, 0.0},
-                                   {2.0, 1.3},
-                                   {0.0, 1.3},
-                                   {0.0, 0.0}
-                                 };
-
-        b2BodyDef bd;
-        b2Body* track = m_world->CreateBody(&bd);
-
-        for (int32 i = 0; i < 4; i++){
-            b2PolygonShape shape;
-            shape.SetAsEdge(b2Vec2(track_points[i][0] * 30 - 30, track_points[i][1]* 30),
-                    b2Vec2(track_points[i + 1][0] * 30 - 30, track_points[i + 1][1] * 30));
-            track->CreateFixture(&shape, 0.0f);
-        }
-
-    }
-
+    track = new Track(m_world);
     car = new Car(m_world);
-
+    car->SetLocation(0, 0, b2_pi / 2.0);
 }
 
 void Game::DestroyBody()
@@ -85,6 +64,34 @@ void Game::Keyboard(unsigned char key)
     default:
         break;
     }
+}
+
+void Game::KeyboardSpecialUp(int key, int x, int y){
+    switch (key)
+    {
+    case GLUT_KEY_LEFT:
+        car->SteeringAngle(0);
+        break;
+
+        // Press right to pan right.
+    case GLUT_KEY_RIGHT:
+        car->SteeringAngle(0);
+        break;
+
+        // Press down to pan down.
+    case GLUT_KEY_DOWN:
+        car->EngineSpeed(0);
+        break;
+
+        // Press up to pan up.
+    case GLUT_KEY_UP:
+        car->EngineSpeed(0);
+        break;
+    }
+}
+
+void Game::KeyboardUp(unsigned char key){
+
 }
 
 void Game::Step(Settings* settings)

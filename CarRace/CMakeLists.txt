@@ -9,8 +9,10 @@ set(GAME_SRCS
         Game/Render.h
         Game/Test.cpp
         Game/Test.h
-	Game/Car.h
-	Game/Car.cpp
+        Game/Car.h
+        Game/Car.cpp
+        Game/Track.cpp
+        Game/Track.h
 )
 
 #Define the learning files.
