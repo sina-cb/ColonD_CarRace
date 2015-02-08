@@ -36,6 +36,7 @@ include_directories (
 	${OPENGL_INCLUDE_DIR}
 	${Box2D_SOURCE_DIR}
 	../rapidjson
+	/usr/local/include
 )
 
 if(APPLE)
@@ -51,6 +52,9 @@ add_executable(DrivingLicenceTest
         ${LEARNING_SRCS}
 )
 
+find_library(M_LIB m)
+find_library(FANN_LIB fann)
+
 target_link_libraries (
         DrivingLicenceTest
 	Box2D
@@ -58,4 +62,6 @@ target_link_libraries (
 	glui
 	rapidjson
 	${OPENGL_LIBRARIES}
+	${FANN_LIB}
+	${M_LIB}
 )

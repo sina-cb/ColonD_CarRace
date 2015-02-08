@@ -2,6 +2,7 @@
 #define SIMPLE_DRIVER_H
 
 #include "Driver.h"
+#include "fann.h"
 
 class SimpleDriver : public Driver{
 
