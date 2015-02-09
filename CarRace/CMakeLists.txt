@@ -20,6 +20,10 @@ set(LEARNING_SRCS
 	Learning/Driver.h
         Learning/SimpleDriver.h
         Learning/SimpleDriver.cpp
+	Learning/ANNDriver.h
+	Learning/ANNDriver.cpp
+	Learning/QDriver.h
+	Learning/QDriver.cpp
 )
 
 #Define the system files.

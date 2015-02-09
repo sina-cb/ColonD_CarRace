@@ -8,12 +8,18 @@ class Track{
 
 public:
     Track(b2World * world);
+    ~Track();
 
     void create_track();
     void create_checkpoints();
 
-    static const int TRACK_USER_DATA_VALUE = 3;
-    static const int TRACK_CHECKPOINT_COUNT = 4;
+    void Restart();
+    void DestroyBody(b2Body* body);
+
+    static const int CHECKPOINT_USER_DATA = 3;
+    static const int FINISH_LINE_USER_DATA = 4;
+    static const int TRACK_CHECKPOINT_COUNT = 101;
+
 
 private:
     b2World* world;

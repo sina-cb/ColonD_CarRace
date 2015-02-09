@@ -7,7 +7,7 @@ class Driver{
 
 public:
     Driver(){
-
+        if_drive = false;
     }
     Driver(Car* car);
 
@@ -15,15 +15,26 @@ public:
         delete car;
     }
 
-    virtual void drive(){
-
+    void start(){
+        car->EngineSpeed(-car->HorsePower());
+        car->SteeringAngle(0);
+        if_drive = true;
     }
 
-    virtual void Restart(){
-
+    void stop(){
+        car->EngineSpeed(0);
+        car->SteeringAngle(0);
+        if_drive = false;
     }
+
+    virtual void drive(){}
+
+    virtual void Restart(){}
+
+    virtual char* Name(){}
 
     Car* car;
+    bool if_drive;
 
 };
 

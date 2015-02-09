@@ -5,15 +5,9 @@ using namespace std;
 Game::Game()
 {
     m_world->SetGravity(b2Vec2(0.0, 0.0));
-
     track = new Track(m_world);
     car = new Car(m_world);
     car->SetLocation(0, 0, b2_pi / 2.0);
-}
-
-void Game::DestroyBody(b2Body* body)
-{
-    m_world->DestroyBody(body);
 }
 
 void Game::KeyboardSpecial(int key, int x, int y){
@@ -48,10 +42,7 @@ void Game::Keyboard(unsigned char key)
 {
     switch (key)
     {
-    case 's':
-        car->EngineSpeed(-car->HorsePower());
-        car->SteeringAngle(0);
-        break;
+
     default:
         break;
     }
@@ -94,7 +85,8 @@ void Game::Step(Settings* settings)
     m_debugDraw.DrawString(5, m_textLine, "Top-down car racing simulation!");
     m_textLine += 15;
 
-    for (int i = 0; i < Car::sensor_count; i++){
+    //Update sensor data
+    for (int i = 0; i < Car::SENSOR_COUNT; i++){
         b2Vec2 point1 = car->SensorLocation();
         float32 angle = car->Body()->GetAngle() - (b2_pi / 4.0) * i;
         b2Vec2 d(car->SensorRange() * cosf(angle), car->SensorRange() * sinf(angle));
@@ -109,14 +101,18 @@ void Game::Step(Settings* settings)
             m_debugDraw.DrawSegment(point1, callback.m_point, b2Color(0.8f, 0.8f, 0.8f));
             b2Vec2 head = callback.m_point + 0.5f * callback.m_normal;
             m_debugDraw.DrawSegment(callback.m_point, head, b2Color(0.9f, 0.9f, 0.4f));
-        }
 
-        double dx = point1.x - callback.m_point.x;
-        double dy = point1.y - callback.m_point.y;
-        car->sensor_data[i] = sqrt(dx * dx + dy * dy);
+            double dx = point1.x - callback.m_point.x;
+            double dy = point1.y - callback.m_point.y;
+            car->sensor_data[i] = sqrt(dx * dx + dy * dy);
+        }else{
+            car->sensor_data[i] = car->SensorRange();
+        }
     }
 
+    //Handle CheckPoint collisions
     static int iterations = 0;
+    bool no_collision = true;
     for (int32 i = 0; i < m_pointCount; ++i)
     {
         ContactPoint* point = m_points + i;
@@ -139,20 +135,30 @@ void Game::Step(Settings* settings)
             index2 = *(int32*)userData;
         }
 
-        if (index1 == Track::TRACK_USER_DATA_VALUE){
-            DestroyBody(body1);
+        if (index1 == Track::CHECKPOINT_USER_DATA){
+            track->DestroyBody(body1);
+            car->true_output = car->POSITIVE;
+            no_collision = false;
             return;
-        }else if (index2 == Track::TRACK_USER_DATA_VALUE){
-            DestroyBody(body2);
+        }else if (index2 == Track::CHECKPOINT_USER_DATA){
+            track->DestroyBody(body2);
+            car->true_output = car->POSITIVE;
+            no_collision = false;
             return;
         }
 
         cout << "Iteration " << iterations << ": Collided!" << endl;
         iterations++;
+        car->true_output = car->NEGATIVE;
+        no_collision = false;
         Restart();
-        car->EngineSpeed(-car->HorsePower());
         break;
     }
+
+    if (no_collision){
+        car->true_output = car->NEUTRAL;
+    }
+
 }
 
 void Game::Restart(){
@@ -161,6 +167,5 @@ void Game::Restart(){
     car->EngineSpeed(0);
     car->SetLocation(0, 0, b2_pi / 2.0);
 
-    delete track;
-    track = new Track(m_world);
+    track->Restart();
 }

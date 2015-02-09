@@ -12,6 +12,7 @@ Car::Car(b2World *world): CAR_STARTING_POS(10, 10),
 
     engineSpeed = 0.0;
     steeringAngle = 0.0;
+    true_output = NEUTRAL;
 
     b2BodyDef * staticDef = new b2BodyDef();
     staticDef->position.Set(5.0, 5.0);
@@ -27,8 +28,8 @@ Car::Car(b2World *world): CAR_STARTING_POS(10, 10),
     body->ResetMassData();
 
     int* userD = new int[2];
-    userD[0] = 1;
-    userD[1] = 2;
+    userD[0] = LEFT_WHEEL_USER_DATA;
+    userD[1] = RIGHT_WHEEL_USER_DATA;
 
     b2BodyDef* leftWheelDef = new b2BodyDef();
     leftWheelDef->type = b2_dynamicBody;
@@ -64,7 +65,7 @@ Car::Car(b2World *world): CAR_STARTING_POS(10, 10),
     bodyFix->shape = boxDef;
     bodyFix->density = 1.0;
     bodyFix->filter.categoryBits = Game::BODY;
-    bodyFix->filter.maskBits = Game::BOUNDARY;
+    bodyFix->filter.maskBits = Game::BOUNDARY | Game::CHECKPOINT;
     body->CreateFixture(bodyFix);
 
     //Left Wheel shape
@@ -75,7 +76,7 @@ Car::Car(b2World *world): CAR_STARTING_POS(10, 10),
     leftWheelFix->shape = leftWheelShapeDef;
     leftWheelFix->density = 1.0;
     leftWheelFix->filter.categoryBits = Game::WHEEL;
-    leftWheelFix->filter.maskBits = Game::BOUNDARY;
+    leftWheelFix->filter.maskBits = Game::BOUNDARY | Game::CHECKPOINT;
     leftWheel->CreateFixture(leftWheelFix);
 
     //Right Wheel shape
@@ -86,7 +87,7 @@ Car::Car(b2World *world): CAR_STARTING_POS(10, 10),
     rightWheelFix->shape = rightWheelShapeDef;
     rightWheelFix->density = 1.0;
     rightWheelFix->filter.categoryBits = Game::WHEEL;
-    rightWheelFix->filter.maskBits = Game::BOUNDARY;
+    rightWheelFix->filter.maskBits = Game::BOUNDARY | Game::CHECKPOINT;
     rightWheel->CreateFixture(rightWheelFix);
 
     //Left Wheel shape
@@ -97,7 +98,7 @@ Car::Car(b2World *world): CAR_STARTING_POS(10, 10),
     leftRearWheelFix->shape = leftRearWheelShapeDef;
     leftRearWheelFix->density = 1.0;
     leftRearWheelFix->filter.categoryBits = Game::WHEEL;
-    leftRearWheelFix->filter.maskBits = Game::BOUNDARY;
+    leftRearWheelFix->filter.maskBits = Game::BOUNDARY | Game::CHECKPOINT;
     leftRearWheel->CreateFixture(leftRearWheelFix);
 
     //Right Wheel shape
@@ -108,7 +109,7 @@ Car::Car(b2World *world): CAR_STARTING_POS(10, 10),
     rightRearWheelFix->shape = rightRearWheelShapeDef;
     rightRearWheelFix->density = 1.0;
     rightRearWheelFix->filter.categoryBits = Game::WHEEL;
-    rightRearWheelFix->filter.maskBits = Game::BOUNDARY;
+    rightRearWheelFix->filter.maskBits = Game::BOUNDARY | Game::CHECKPOINT;
     rightRearWheel->CreateFixture(rightRearWheelFix);
 
     body->ResetMassData();
@@ -143,7 +144,7 @@ Car::Car(b2World *world): CAR_STARTING_POS(10, 10),
     world->CreateJoint(leftRearJointDef);
     world->CreateJoint(rightRearJointDef);
 
-    sensor_data = new double[sensor_count];
+    sensor_data = new double[SENSOR_COUNT];
 }
 
 void Car::SetLocation(float32 x, float32 y, float32 angle){

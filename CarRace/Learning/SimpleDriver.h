@@ -10,6 +10,7 @@ public:
     SimpleDriver(Car* car);
     void drive();
     void Restart();
+    char* Name(){return "Simple Driver";}
 
 private:
     int direction;

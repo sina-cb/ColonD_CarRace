@@ -24,21 +24,29 @@ public:
     double MaxSteeringAngle(){return MAX_STEER_ANGLE;}
 
     b2Vec2 SensorLocation();
-    double SensorRange(){return sensor_range;}
+    double SensorRange(){return SENSOR_RANGE;}
     double* SensorData(){return sensor_data;}
 
     void SetLocation(float32 x, float32 y, float32 angle);
 
-    static const int sensor_count = 5;
+    static const int LEFT_WHEEL_USER_DATA = 1;
+    static const int RIGHT_WHEEL_USER_DATA = 2;
+    static const int SENSOR_COUNT = 5;
+
+    static const float32 POSITIVE = 0.9;
+    static const float32 NEGATIVE = 0.1;
+    static const float32 NEUTRAL = 0.5;
+
     double* sensor_data;
+    double true_output;
 
 private:
     static const double MAX_STEER_ANGLE = M_PI / 4.0;
-    static const double STEER_SPEED = 1.5;
-    static const double SIDEWAYS_FRICTION_FORCE = 10;
-    static const double HORSEPOWERS = 40;
-    const b2Vec2 CAR_STARTING_POS;
+    static const double STEER_SPEED = 2; //default = 1.5
+    static const double SIDEWAYS_FRICTION_FORCE = 100;
+    static const double HORSEPOWERS = 60; //default = 40
 
+    const b2Vec2 CAR_STARTING_POS;
     const b2Vec2 leftRearWheelPosition;
     const b2Vec2 rightRearWheelPosition;
     const b2Vec2 leftFrontWheelPosition;
@@ -46,7 +54,7 @@ private:
 
     double engineSpeed;
     double steeringAngle;
-    static const double sensor_range = 8;
+    static const double SENSOR_RANGE = 8;
 
     b2World* world;
 
