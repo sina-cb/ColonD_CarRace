@@ -5,6 +5,7 @@
 #include "glui/GL/glui.h"
 #include "../Learning/Driver.h"
 #include <cstdio>
+#include <typeinfo>
 
 namespace
 {
@@ -101,6 +102,8 @@ void Keyboard(unsigned char key, int x, int y)
     switch (key)
     {
     case 27:
+        delete(driver);
+        delete(game);
         exit(0);
         break;
 
@@ -253,7 +256,7 @@ int main(int argc, char** argv)
     GameVersion version = {0, 0, 1};
 
     game = new Game();
-    driver = new ANNDriver(game->car);
+    driver = new ANNDriver(game->car, false, true);
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);

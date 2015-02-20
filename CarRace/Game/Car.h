@@ -18,6 +18,7 @@ public:
 
     void EngineSpeed(double engineSpeed){this->engineSpeed = engineSpeed;}
     void SteeringAngle(double steeringAngle){this->steeringAngle = steeringAngle;}
+    double SteeringStep(){return MAX_STEER_ANGLE / STEER_STEP_COUNT;}
     void ForceStop();
 
     double HorsePower(){return HORSEPOWERS;}
@@ -41,7 +42,8 @@ public:
     double true_output;
 
 private:
-    static const double MAX_STEER_ANGLE = M_PI / 4.0;
+    static const double MAX_STEER_ANGLE = M_PI / 5.0;
+    static const double STEER_STEP_COUNT = 2;
     static const double STEER_SPEED = 2; //default = 1.5
     static const double SIDEWAYS_FRICTION_FORCE = 100;
     static const double HORSEPOWERS = 60; //default = 40
