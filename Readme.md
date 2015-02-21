@@ -14,4 +14,4 @@ So far, the following drivers have been implemented in this project
 # Demo
 You can see a demo of the Artificial Network Trained to drive the car from the following YouTube Video:
 
-[![YouTube Video](http://img.youtube.com/vi/xTCJWMBy5rA/0.jpg)](http://youtu.be/vt5fpE0bzSY)
+[![YouTube Video](http://img.youtube.com/vi/xTCJWMBy5rA/0.jpg)](https://www.youtube.com/watch?v=xTCJWMBy5rA)
