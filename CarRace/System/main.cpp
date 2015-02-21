@@ -253,16 +253,17 @@ void KeyboardSpecialUp(int key, int x, int y)
 
 int main(int argc, char** argv)
 {
-    GameVersion version = {0, 0, 1};
+    GameVersion version = {1, 0, 1};
 
     game = new Game();
     driver = new ANNDriver(game->car, false, true);
+//    driver = new SimpleDriver(game->car);
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
     glutInitWindowSize(width, height);
     char title[32];
-    sprintf(title, "Top-down Car Race Simulation v.%d.%d.%d", version.major, version.minor, version.revision);
+    sprintf(title, "Top-down Car Race Simulation v.%d.%d.%d - By Sina Solaimanpour", version.major, version.minor, version.revision);
     mainWindow = glutCreateWindow(title);
     //glutSetOption (GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 

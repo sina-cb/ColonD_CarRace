@@ -39,6 +39,8 @@ private:
     static const unsigned int max_epochs = 500000;
     static const unsigned int epochs_between_reports = 1000;
 
+    static const double MIN_CHANGE_IN_PREDICTION = 0.01;
+
 };
 
 #endif

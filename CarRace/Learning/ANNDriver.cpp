@@ -63,7 +63,7 @@ void ANNDriver::drive(){
             diff = last_angle - predicted_angle[0];
         }
 
-        if (abs(diff) < 0.000001){
+        if (abs(diff) < MIN_CHANGE_IN_PREDICTION){
             diff = 0;
         }
 
@@ -89,12 +89,12 @@ void ANNDriver::drive(){
         data_count++;
 
     }else{
-//        cout << "Sensor data: ";
-//        for (int i = 0; i < car->SENSOR_COUNT; i++){
-//            cout << (int) sensor_data[i] << "\t";
-//        }
-//        cout << "True value: " << steering_angle;
-//        cout << endl;
+        //        cout << "Sensor data: ";
+        //        for (int i = 0; i < car->SENSOR_COUNT; i++){
+        //            cout << (int) sensor_data[i] << "\t";
+        //        }
+        //        cout << "True value: " << steering_angle;
+        //        cout << endl;
     }
 
 }
