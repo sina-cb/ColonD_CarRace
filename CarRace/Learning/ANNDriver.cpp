@@ -54,7 +54,7 @@ void ANNDriver::drive(){
         fann_type *predicted_angle;
         predicted_angle = fann_run(ann, sensor_data_disc);
 
-        cout << "Predited value: " << predicted_angle[0] << endl;
+//        cout << "Predited value: " << predicted_angle[0] << endl;
 
         double diff = 0;
         if (last_angle == 0){
