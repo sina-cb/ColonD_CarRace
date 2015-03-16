@@ -135,11 +135,11 @@ void Track::create_checkpoints(){
 
     for (int32 i = 0; i < TRACK_CHECKPOINT_COUNT; i++){
 
-        if (i == TRACK_CHECKPOINT_COUNT - 1){
-            cout << "Create finish line" << endl;
-            bodyDef.userData = userD + 1;
-            bodyDef.type = b2_staticBody;
-        }
+//        if (i == TRACK_CHECKPOINT_COUNT - 1){
+//            cout << "Create finish line" << endl;
+//            bodyDef.userData = userD + 1;
+//            bodyDef.type = b2_staticBody;
+//        }
 
         if (check_point_bodies[i] != 0){
             world->DestroyBody(check_point_bodies[i]);
