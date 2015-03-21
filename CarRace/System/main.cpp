@@ -260,7 +260,7 @@ int main(int argc, char** argv)
 
     game = new Game();
     driver = new ANNDriver(game->car, false, true);
-//    driver = new SimpleDriver(game->car);
+//  driver = new SimpleDriver(game->car);
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
@@ -268,7 +268,7 @@ int main(int argc, char** argv)
     char title[32];
     sprintf(title, "Top-down Car Race Simulation v.%d.%d.%d - By Sina Solaimanpour", version.major, version.minor, version.revision);
     mainWindow = glutCreateWindow(title);
-    //glutSetOption (GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
+//  glutSetOption (GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 
     glutDisplayFunc(SimulationLoop);
     GLUI_Master.set_glutReshapeFunc(Resize);
