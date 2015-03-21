@@ -62,30 +62,7 @@ void ANNDriver::drive(){
         fann_type *predicted_angle;
         predicted_angle = fann_run(ann, sensor_data_disc);
 
-//        cout << "Predited value: " << predicted_angle[0] << endl;
-
-//        double diff = 0;
-//        if (last_angle == 0){
-//            last_angle = predicted_angle[0];
-//        }else{
-//            diff = last_angle - predicted_angle[0];
-//        }
-
-//        if (abs(diff) < MIN_CHANGE_IN_PREDICTION){
-//            diff = 0;
-//        }
-
-//        if (diff < 0){
-//            car->SteeringAngle(car->MaxSteeringAngle());
-//        }else if (diff > 0){
-//            car->SteeringAngle(-car->MaxSteeringAngle());
-//        }else{
-//            car->SteeringAngle(0);
-//        }
-
         car->SteeringAngle(predicted_angle[0] * car->MaxSteeringAngle());
-
-        cout << *predicted_angle << endl;
     }
 
     if (collect_data){
