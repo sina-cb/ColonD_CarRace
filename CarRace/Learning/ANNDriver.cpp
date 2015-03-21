@@ -60,7 +60,7 @@ void ANNDriver::drive(){
         }
 
         fann_type *predicted_angle;
-        predicted_angle = fann_run(ann, sensor_data_disc);
+            predicted_angle = fann_run(ann, sensor_data_disc);
 
         car->SteeringAngle(predicted_angle[0] * car->MaxSteeringAngle());
     }
