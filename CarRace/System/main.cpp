@@ -134,6 +134,9 @@ void Keyboard(unsigned char key, int x, int y)
     case 'd':
         driver->stop();
         break;
+    case 't':
+        driver->toggle_train();
+        break;
 
     default:
         if (game)
@@ -253,7 +256,7 @@ void KeyboardSpecialUp(int key, int x, int y)
 
 int main(int argc, char** argv)
 {
-    GameVersion version = {1, 0, 1};
+    GameVersion version = {1, 2, 1};
 
     game = new Game();
     driver = new ANNDriver(game->car, false, true);

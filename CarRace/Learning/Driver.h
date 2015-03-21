@@ -33,6 +33,8 @@ public:
 
     virtual char* Name(){}
 
+    virtual void toggle_train(){}
+
     Car* car;
     bool if_drive;
 

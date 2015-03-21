@@ -19,16 +19,24 @@ ANNDriver::ANNDriver(Car *car, bool collect, bool load){
 }
 
 void ANNDriver::load_ann(){
-
     ann = fann_create_from_file("ann.model");
-
 }
 
 void ANNDriver::create_ann(char *file_path){
-    ann = fann_create_standard(num_layers, num_input, num_neurons_hidden, num_output);
+
+    unsigned int layers_declaration[num_layers];
+
+    layers_declaration[0] = num_input;
+    for (int i = 1; i < num_layers - 1; i++)
+        layers_declaration[i] = num_neurons_hidden;
+    layers_declaration[num_layers - 1] = num_output;
+
+    ann = fann_create_standard_array(num_layers, layers_declaration);
 
     fann_set_activation_function_hidden(ann, FANN_SIGMOID_SYMMETRIC);
     fann_set_activation_function_output(ann, FANN_SIGMOID_SYMMETRIC);
+    fann_set_learning_rate(ann, learning_rate);
+    fann_set_learning_momentum(ann, momentum);
 
     fann_train_on_file(ann, file_path, max_epochs, epochs_between_reports, desired_error);
 
@@ -56,34 +64,38 @@ void ANNDriver::drive(){
 
 //        cout << "Predited value: " << predicted_angle[0] << endl;
 
-        double diff = 0;
-        if (last_angle == 0){
-            last_angle = predicted_angle[0];
-        }else{
-            diff = last_angle - predicted_angle[0];
-        }
+//        double diff = 0;
+//        if (last_angle == 0){
+//            last_angle = predicted_angle[0];
+//        }else{
+//            diff = last_angle - predicted_angle[0];
+//        }
 
-        if (abs(diff) < MIN_CHANGE_IN_PREDICTION){
-            diff = 0;
-        }
+//        if (abs(diff) < MIN_CHANGE_IN_PREDICTION){
+//            diff = 0;
+//        }
 
-        if (diff < 0){
-            car->SteeringAngle(car->MaxSteeringAngle());
-        }else if (diff > 0){
-            car->SteeringAngle(-car->MaxSteeringAngle());
-        }else{
-            car->SteeringAngle(0);
-        }
+//        if (diff < 0){
+//            car->SteeringAngle(car->MaxSteeringAngle());
+//        }else if (diff > 0){
+//            car->SteeringAngle(-car->MaxSteeringAngle());
+//        }else{
+//            car->SteeringAngle(0);
+//        }
+
+        car->SteeringAngle(predicted_angle[0] * car->MaxSteeringAngle());
+
+        cout << *predicted_angle << endl;
     }
 
     if (collect_data){
+
         for (int i = 0; i < car->SENSOR_COUNT; i++){
-            if (i != car->SENSOR_COUNT - 1)
-                mystring << (int) sensor_data[i] << " ";
+            mystring << sensor_data[i] << " ";
         }
         mystring << endl;
 
-        mystring << steering_angle * 10;
+        mystring << steering_angle;
         mystring << endl;
 
         data_count++;
@@ -104,14 +116,24 @@ ANNDriver::~ANNDriver(){
     if (collect_data){
         myfile.open("sensor.csv");
 
-        myfile << data_count << " " << car->SENSOR_COUNT + 1 << " " << 1 << endl;
+        myfile << data_count << " " << car->SENSOR_COUNT << " " << 1 << endl;
         myfile << mystring.str();
 
         myfile.close();
 
-        create_ann("sensor.csv");
+        //create_ann("sensor.csv");
     }
 
+}
+
+void ANNDriver::toggle_train(){
+    collect_data = !collect_data;
+
+    if (collect_data){
+        cout << "Collecting started!" << endl;
+    }else{
+        cout << "Collecting ended!" << endl;
+    }
 }
 
 void ANNDriver::Restart(){
