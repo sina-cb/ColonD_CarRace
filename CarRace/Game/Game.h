@@ -22,6 +22,8 @@
 #include "Test.h"
 #include "Car.h"
 #include "Track.h"
+#include "Track_Simple.h"
+#include "Track_Complex.h"
 #include <cstring>
 #include <iostream>
 #include <rapidjson/document.h>
@@ -85,7 +87,7 @@ public:
         CHECKPOINT  =   0x0008,
     };
 
-    Game();
+    Game(int track_num);
 
     void Keyboard(unsigned char key);
     void KeyboardSpecial(int key, int x, int y);
@@ -94,7 +96,7 @@ public:
     void Step(Settings* settings);
     void Restart();
 
-    static Test* Create(){return new Game;}
+//    static Test* Create(){return new Game;}
 
     b2Body* m_bodies[e_maxBodies];
 

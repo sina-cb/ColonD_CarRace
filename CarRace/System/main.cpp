@@ -23,6 +23,7 @@ b2Vec2 viewCenter(0.0f, 20.0f);
 int tx, ty, tw, th;
 bool rMouseDown;
 b2Vec2 lastp;
+int track_num;
 }
 
 void RestartSystem();
@@ -222,7 +223,7 @@ void Restart(int)
 {
     delete game;
     delete driver;
-    game = new Game();
+    game = new Game(track_num);
     driver = new SimpleDriver(game->car);
 
     Resize(width, height);
@@ -258,8 +259,19 @@ int main(int argc, char** argv)
 {
     GameVersion version = {1, 2, 1};
 
-    game = new Game();
-    driver = new ANNDriver(game->car, false, false);
+    string models[4] = {"00_Good.model",
+                        "01_BothWays.model",
+                        "02_OverFit.model",
+                        "03_Random.model"
+                       };
+
+    int TRACK_ORIG = 0;
+    int TRACK_SIMPLE = 1;
+    int TRACK_COMPLEX = 2;
+
+    track_num = TRACK_COMPLEX;
+    game = new Game(track_num);
+    driver = new ANNDriver(game->car, false, true, models[1]);
 //  driver = new SimpleDriver(game->car);
 
     glutInit(&argc, argv);

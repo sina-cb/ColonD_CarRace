@@ -2,6 +2,10 @@
 #include "Game.h"
 #include <Box2D/Common/b2Math.h>
 
+Track::Track(){
+
+}
+
 Track::Track(b2World *world)
 {
     this->world = world;

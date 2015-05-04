@@ -13,7 +13,7 @@ using namespace std;
 class ANNDriver : public Driver{
 
 public:
-    ANNDriver(Car* car, bool collect, bool load);
+    ANNDriver(Car* car, bool collect, bool load, string model_name);
     ~ANNDriver();
     void drive();
     void Restart();
@@ -25,6 +25,7 @@ public:
 
 private:
 
+    string model_name;
     ofstream myfile;
     ostringstream mystring;
     bool collect_data;

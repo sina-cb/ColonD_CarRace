@@ -2,7 +2,7 @@
 
 using namespace std;
 
-ANNDriver::ANNDriver(Car *car, bool collect, bool load){
+ANNDriver::ANNDriver(Car *car, bool collect, bool load, string model_name){
     this->car = car;
     if_drive = false;
 
@@ -10,6 +10,7 @@ ANNDriver::ANNDriver(Car *car, bool collect, bool load){
     data_count = 0;
 
     if (!collect_data && load){
+        this->model_name = model_name;
         load_ann();
     }
 
@@ -19,7 +20,7 @@ ANNDriver::ANNDriver(Car *car, bool collect, bool load){
 }
 
 void ANNDriver::load_ann(){
-    ann = fann_create_from_file("ann.model");
+    ann = fann_create_from_file(model_name.c_str());
 }
 
 void ANNDriver::create_ann(char *file_path){

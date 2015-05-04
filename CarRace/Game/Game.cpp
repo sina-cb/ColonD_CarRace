@@ -2,10 +2,22 @@
 #include <iostream>
 using namespace std;
 
-Game::Game()
+Game::Game(int track_num)
 {
     m_world->SetGravity(b2Vec2(0.0, 0.0));
-    track = new Track(m_world);
+
+    int TRACK_ORIG = 0;
+    int TRACK_SIMPLE = 1;
+    int TRACK_COMPLEX = 2;
+
+    if (track_num == TRACK_ORIG){
+        track = new Track(m_world);
+    }else if (track_num == TRACK_SIMPLE){
+        track = new TrackSimple(m_world);
+    }else if (track_num == TRACK_COMPLEX){
+        track = new TrackComplex(m_world);
+    }
+
     car = new Car(m_world);
     car->SetLocation(0, 0, b2_pi / 2.0);
 }
