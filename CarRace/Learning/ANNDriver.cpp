@@ -49,8 +49,6 @@ void ANNDriver::drive(){
     double* sensor_data = car->SensorData();
     int steering_angle = (int)(car->SteeringAngle() / car->MaxSteeringAngle());
 
-    static double last_angle = 0;
-
     if (if_drive){
         car->EngineSpeed(-car->HorsePower());
 

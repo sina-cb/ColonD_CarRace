@@ -259,7 +259,7 @@ int main(int argc, char** argv)
     GameVersion version = {1, 2, 1};
 
     game = new Game();
-    driver = new ANNDriver(game->car, false, true);
+    driver = new ANNDriver(game->car, false, false);
 //  driver = new SimpleDriver(game->car);
 
     glutInit(&argc, argv);

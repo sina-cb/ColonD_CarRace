@@ -1,0 +1,2 @@
+/usr/bin/ar cr librapidjson.a  CMakeFiles/rapidjson.dir/empty.cpp.o
+/usr/bin/ranlib librapidjson.a
