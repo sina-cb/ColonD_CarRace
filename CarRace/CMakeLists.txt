@@ -66,6 +66,6 @@ target_link_libraries (
 	glui
 	rapidjson
 	${OPENGL_LIBRARIES}
-	${FANN_LIB}
-	${M_LIB}
+        ${FANN_LIB}
+        ${M_LIB}
 )

@@ -32,3 +32,5 @@ Makefile*
 *.qmlproject.user.*
 
 Build/*
+
+CMakeLists.txt.user
