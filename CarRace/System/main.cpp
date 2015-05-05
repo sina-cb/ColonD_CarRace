@@ -262,16 +262,16 @@ int main(int argc, char** argv)
     string models[4] = {"00_Good.model",
                         "01_BothWays.model",
                         "02_OverFit.model",
-                        "03_Random.model"
+                        "03_NotWellTrained.model"
                        };
 
-    int TRACK_ORIG = 0;
+    int TRACK_TRAIN = 0;
     int TRACK_SIMPLE = 1;
     int TRACK_COMPLEX = 2;
 
-    track_num = TRACK_COMPLEX;
+    track_num = TRACK_TRAIN;
     game = new Game(track_num);
-    driver = new ANNDriver(game->car, false, true, models[1]);
+    driver = new ANNDriver(game->car, false, false, models[2]);
 //  driver = new SimpleDriver(game->car);
 
     glutInit(&argc, argv);
