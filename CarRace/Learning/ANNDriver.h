@@ -33,15 +33,15 @@ private:
 
     struct fann *ann;
 
-    static const unsigned int num_layers = 5;
+    static const unsigned int num_layers = 4;
     static const unsigned int num_input = 5;
     static const unsigned int num_output = 1;
-    static const unsigned int num_neurons_hidden = 15;
+    static const unsigned int num_neurons_hidden = 3;
 
-    static const float desired_error = 0.01;
+    static const float desired_error = 0.04;
     static const float momentum = 0.2;
     static const float learning_rate = 0.1;
-    static const unsigned int max_epochs = 10;
+    static const unsigned int max_epochs = 10000;
     static const unsigned int epochs_between_reports = 100;
 
     static const double MIN_CHANGE_IN_PREDICTION = 0.15;
