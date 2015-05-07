@@ -269,9 +269,9 @@ int main(int argc, char** argv)
     int TRACK_SIMPLE = 1;
     int TRACK_COMPLEX = 2;
 
-    track_num = TRACK_TRAIN;
+    track_num = TRACK_COMPLEX;
     game = new Game(track_num);
-    driver = new ANNDriver(game->car, false, false, models[2]);
+    driver = new ANNDriver(game->car, false, true, models[3]);
 //  driver = new SimpleDriver(game->car);
 
     glutInit(&argc, argv);
